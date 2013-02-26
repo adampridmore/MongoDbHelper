@@ -2,3 +2,5 @@
 /MongoDbHelper/bin
 /MongoDbHelper/obj
 /MongoDbHelper/*.user
+/_ReSharper.MongoDbHelper
+/*.user
