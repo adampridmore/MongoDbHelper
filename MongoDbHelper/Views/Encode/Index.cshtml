@@ -1,0 +1,45 @@
+﻿@model MongoDbHelper.Models.EncodeIndexModel
+@{
+    ViewBag.Title = "MongoDB Helpers";
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span10">
+            <p>ISO time stamps to convert to ObjectIds</p>
+            <textarea style="width: 500px" rows="10" id="objectIds" placeholder="yyyy-mm-ddThh:mm:ss">@Model.Timestamps</textarea>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <p><input id="parse" class="btn btn-primary" type="button" value="Encode" /></p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            @if (Model.ObjectIds.Any())
+            {
+                <textarea style="width: 500px" rows="10" id="" style="font-family: 'Courier New'">@Model.ObjectIdsText</textarea>
+            }
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        var baseUrl = "@Url.Action("Index")";
+
+        $(document).ready(function () {
+            $('#parse').click(parseClick);
+        });
+        
+        function parseClick() {
+            var objectIdsText = $('#objectIds').val();
+
+            var lines = objectIdsText.split('\n');
+
+            var newUrl = baseUrl + "?timeStamps=" + lines.join();
+            
+            window.location = newUrl;
+        }
+    </script>
+}
